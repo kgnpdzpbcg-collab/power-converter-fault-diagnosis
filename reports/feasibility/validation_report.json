@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "probe_refits_and_prediction_replays": 132,
+  "paired_bootstrap_replays": 24,
+  "frequency_cache_reproduced": true,
+  "views_and_all_metrics_reproduced": true,
+  "data_manifest_normalization_checkpoints_and_old_code_unchanged": true,
+  "raw_source_hashes_unchanged": true,
+  "train_val_samples": 48985,
+  "test_feature_or_prediction_computed": false
+}

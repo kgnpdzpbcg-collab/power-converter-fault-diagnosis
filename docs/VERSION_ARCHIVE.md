@@ -25,3 +25,15 @@ GitHub 按相同顺序保留代码、方案和结果历史；最终阶段通过�
 
 V3 不直接覆盖 `main`，不强制更新任何远端分支，也没有自动合并。
 若以后配置命令行凭据，可在对齐后的分支上正常提交和推送。
+
+## 细标签/频域诊断阶段
+
+在 `codex/fine-frequency-diagnostics` 独立存档，原V3/V4分支继续保留。
+本轮不修改旧converter代码、原数据或实验快照，不上传逐样本特征和预测。
+
+| 阶段 | 原始本地提交 | GitHub归档提交 | 相同文件树 |
+|---|---|---|---|
+| 诊断冻结方案与代码 | f97081c | f9e1d80eec2b411947d41087cdc5cb65d2a8cf43 | 6e7efab168cf0b1eeec93455ea635a2f3bf86fcd |
+
+结果阶段保存 `diagnostics-feasibility-results` 本地标签，再由同一GitHub接口归档报告、汇总及导出脚本。
+完整运行证据留在 `artifacts/diagnostics/feasibility_v1/`；其 `plan.json` 指向执行前冻结提交。

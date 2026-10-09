@@ -1,6 +1,23 @@
 # 项目当前状态与续接入口
 
-更新：2026-10-09；当前完成阶段：V3 Train/Val 对照实验，结果和核验已写入磁盘。
+更新：2026-10-09；当前完成阶段：48细标签与短波形频域可行性检查，结果和核验已写入磁盘。
+
+## 当前最新诊断
+
+用户授权本轮客观评估讨论稿并执行两项检查，不是实现新层次监督或时频神经网络。
+执行协议见 `FEASIBILITY_CHECK_PLAN.md`，最终结果先读 `FEASIBILITY_FINDINGS.md`。
+132个简单诊断探针拟合、参数重拟合与预测重放、24组事件bootstrap和24项测试全部通过。
+数据、划分、归一化、历史checkpoint与converter源码均未改变；只生成Train/Val特征。
+
+全48类Raw冻结均值/事件原型Macro-F1为61.55±0.68%，原始输入原型65.62%。
+细类可辨识性不均匀：交流短路/IGBT强，谐波弱，相断开混淆，DC早晚子集下降。
+仅时间的已知故障47类对照Macro-F1为97.38%，说明标签/注入批次高度绑定，工况混杂尚未排除。
+粗类谱形有判别信息，但三源强近邻添加谱形仅Raw小增益，非候选/早晚不稳定。
+建议下一轮先做轻量频域增强的受控神经网络对照，暂缓统一48类辅助监督；此建议尚未实现。
+
+完整诊断在 `artifacts/diagnostics/feasibility_v1/`；汇总在 `reports/feasibility/`。
+当前分支 `codex/fine-frequency-diagnostics`；本地冻结标签 `diagnostics-feasibility-frozen`。
+`V4_DESIGN_PROPOSAL.md`仍只是此前残差候选讨论，不代表已执行或本轮最终路线。
 
 ## 已完成
 

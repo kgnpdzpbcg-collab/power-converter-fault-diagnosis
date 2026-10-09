@@ -1,0 +1,55 @@
+{
+  "scope": "Train/Val diagnostics only",
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "ridge_regularization": 0.01,
+  "window_length": 20,
+  "frequency_axis": "bin1..10; cycles/sample=bin/20; fs_unverified",
+  "bootstrap_repeats": 200,
+  "threads": 2,
+  "views": [
+    "raw",
+    "noncandidate",
+    "early_late"
+  ],
+  "test_evaluation": false,
+  "local_commit": "f97081c89a31a9b52274b35da91d9d6224a129e4",
+  "manifest_sha256": "09dcb9c27a7986bd79e0000c05c933bb38dd73045d1b4e9ea43534059168eff7",
+  "samples_sha256": "f75a05e36fd216f18da37f361a175bb31fd37471bd351c6acfebb1b744113456",
+  "normalization_sha256": "dec1fc369a2b2b40fb89040c235074417411a9fbd70d50b7baa794abc1652768",
+  "checkpoint_sha256": {
+    "42": "18f9d133e1f64bf27bf7fce47125b0c03219c72b62a3d5fa04eaec0e02a3b875",
+    "123": "383f8e7cb510cc82847d813dd2a010cdeb3b655c8d8352ffd03e33b698ec9a86",
+    "2026": "4300fc5970a032f1cf73f0ebff4f1b6431baf901807fac673bd5f9bd5568868d"
+  },
+  "converter_sha256": {
+    "data.py": "7bb34422f8c48f7ef7bcca6fb1c3d4548f9baffd48f0c196b7abb9f0af74aee8",
+    "diagnose_errors.py": "2287dcc3d0f67d00a6392266c00d9e29bf52f2490d0cbfd59c1ae9c7955f3611",
+    "diagnose_gate.py": "1d7dff92a3e1569efbcda46c4faeae43163a71d5482c970ca3e3a520687bdf1b",
+    "experiments.py": "b5081c400c27130ccf95f1697a5303c0f6c6028dee86ce2e5b324dd6f523b3f6",
+    "experiments_v2.py": "76314cf66ee0b8d609714e86eb1d4bf06a583a273b6686c48e30056dfe9d092a",
+    "experiments_v3.py": "a4569975e099f2261c30531cb1950e66e7ff21202e2efde5394dfa1339bd300e",
+    "metrics.py": "88cb77c82088fee61583bc19b5c2212d027dca50211f4854b2990347754f8797",
+    "models.py": "feb7e4eabab0000fc763521cb1bf60f94988526b0c70d8bacc2955f6d953c021",
+    "models_v2.py": "b0a40a019883f3ba7ae1880c8701de14180111c2d02da0aa026c7f01ea97ee1e",
+    "models_v3.py": "7a3ee895618434e6ef412b4abdc255823a200e5ba8275298a914397e8187dcce",
+    "prepare.py": "cb4b59a7e619f9432b4e60a7789e246deff18f19964603f6121af23946193144",
+    "train.py": "1af43f99cf56af76f4f25970b60d3007af8b0a6000d84fff917a9e578ea85471",
+    "training_trace.py": "ef4704643157cb5032f3325df46f16882ef899cc03763ed618ebe1b5c3eee51d",
+    "validate_results.py": "95f293835d3c7a5150b506a030bd4b5eedc995912ad3b07404ddd254507de678",
+    "validate_v2.py": "d9e528dcb6e6b65551f91486a6aa163c3d9490ee194b9fd953366e6b810eb8aa",
+    "validate_v3.py": "dc60f1d8ba9434ccf1636a15f26664bbe75da611110404f38fd64d02638ed3c3",
+    "verify.py": "7a7cf70c8c1f0018d31d01e950c0323707c7f093b599a90ea40c0bc44b3650dc",
+    "__init__.py": "59f81e27139b20936936451807fdb4f13b43b1b2722f60b73f014a9ce4387d18"
+  },
+  "diagnostic_sha256": {
+    "check_routes.py": "1ad9abc56d69341fabef6ecf535bb9b5a84da21d66aa43116117cddac962aeb4",
+    "FEASIBILITY_CHECK_PLAN.md": "2eb59c835a11c9997a04820ad6ecaf938924b0e3ff3624b194b83c8257e168fe",
+    "probes.py": "d16546f87df2977e42701e1a8c30fbeaf1cf079f4c86da41151f2c6aa68d6866",
+    "validate_routes.py": "ea2137bb1b63d32532a38f928d05d3e5000ad7fbecb1b0be5c78da1820dedb63",
+    "__init__.py": "69319c895f3bf22f99a684f707e347c636b644ad8bd7077cbcb4b615217bd82f"
+  }
+}

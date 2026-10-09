@@ -110,3 +110,17 @@ V3 已完成全部 12 次训练和独立核验。B0/B1/B2/B3 验证 Macro-F1 分
 汇总文件为 `REPORT.md`、`summary.csv`、`per_class.csv` 和 `summary.json`。
 读取 `progress.json` 可查看已完成实验数；只有 `result.json` 存在且 status=complete 的实验才计入汇总。
 运行状态及最终指标以产物为准，不能用短流程验证分数代替正式测试结论。
+
+## 细标签与频域可行性检查
+
+已完成48细标签和20点短波形频域的Train/Val诊断，共132次固定简单分类器拟合。
+本轮没有训练新神经网络。24项测试、132个训练参数重拟合/预测重放及24组事件bootstrap核验通过。
+部分细标签可分，但谐波细类持续混淆，标签与时间批次高度绑定。
+粗类频谱有判别信息，加入强时域分类器后的收益仍不稳定。
+详细分析、边界与下一轮建议见 [FEASIBILITY_FINDINGS.md](FEASIBILITY_FINDINGS.md)，
+冻结协议见 [FEASIBILITY_CHECK_PLAN.md](FEASIBILITY_CHECK_PLAN.md)，可存档表格在 `reports/feasibility/`。
+
+```powershell
+# 核验已保存的诊断，不使用Test。
+.venv\Scripts\python.exe -m diagnostics.validate_routes
+```

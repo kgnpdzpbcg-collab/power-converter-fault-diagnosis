@@ -1,0 +1,30 @@
+{
+  "probe_fits": 132,
+  "views": {
+    "raw": {
+      "train_samples": 39687,
+      "val_samples": 9298
+    },
+    "noncandidate": {
+      "train_samples": 39117,
+      "val_samples": 9169
+    },
+    "early_late": {
+      "train_samples": 24438,
+      "val_samples": 3708
+    }
+  },
+  "time_only_fault47": {
+    "scope": "已知为故障的记录；仅训练事件时间中心点最近邻，不读取波形",
+    "macro_f1": 0.9738098786661828,
+    "accuracy": 0.9758490566037736
+  },
+  "normal_label_position_counts": {
+    "initial_normal_samples": 5,
+    "recovery_normal_samples": 35115,
+    "normal_inside_fault_span": 0
+  },
+  "fine48_missing_train_or_val_classes": [],
+  "new_encoder_training": false,
+  "test_evaluation": false
+}
