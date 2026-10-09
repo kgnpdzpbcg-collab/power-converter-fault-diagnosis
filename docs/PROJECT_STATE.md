@@ -4,6 +4,15 @@
 
 ## 当前最新诊断
 
+用户最新要求为“据新讨论稿细化下一轮实验方案”。已完成 `NEXT_EXPERIMENT_PLAN.md`，未开始新训练。
+方案修改优先级：先协议/八类时间对照和四损失比较，再有条件研究多尺度残差编码。
+时间覆盖核查确认：IGBT最后block1768，交流短路最早block1770，不存在训练/未来评估均覆盖八类的全局切点。
+拟议R/F为批内随机/前向60/20/20，使用原Train/Val池，旧Test仍隔离；应新建manifest并重拟合训练归一化。
+R/F三角色覆盖八类，事件数匹配，原始三源行号无跨角色重复；见 `reports/planning/next_protocol_audit.json`。
+当前分支为 `codex/next-experiment-plan`；原诊断分支保留。
+
+### 已完成的上一轮诊断
+
 用户授权本轮客观评估讨论稿并执行两项检查，不是实现新层次监督或时频神经网络。
 执行协议见 `FEASIBILITY_CHECK_PLAN.md`，最终结果先读 `FEASIBILITY_FINDINGS.md`。
 132个简单诊断探针拟合、参数重拟合与预测重放、24组事件bootstrap和24项测试全部通过。
@@ -13,10 +22,11 @@
 细类可辨识性不均匀：交流短路/IGBT强，谐波弱，相断开混淆，DC早晚子集下降。
 仅时间的已知故障47类对照Macro-F1为97.38%，说明标签/注入批次高度绑定，工况混杂尚未排除。
 粗类谱形有判别信息，但三源强近邻添加谱形仅Raw小增益，非候选/早晚不稳定。
-建议下一轮先做轻量频域增强的受控神经网络对照，暂缓统一48类辅助监督；此建议尚未实现。
+上一轮报告曾建议优先做轻量频域增强，尚未实现；根据新讨论稿与用户要求，
+最新方案调整为先验证批内时间敏感性与损失，再研究轻量多尺度编码；统一48类辅助监督继续暂缓。
 
 完整诊断在 `artifacts/diagnostics/feasibility_v1/`；汇总在 `reports/feasibility/`。
-当前分支 `codex/fine-frequency-diagnostics`；本地冻结标签 `diagnostics-feasibility-frozen`。
+诊断存档分支 `codex/fine-frequency-diagnostics`；本地冻结标签 `diagnostics-feasibility-frozen`。
 `V4_DESIGN_PROPOSAL.md`仍只是此前残差候选讨论，不代表已执行或本轮最终路线。
 
 ## 已完成

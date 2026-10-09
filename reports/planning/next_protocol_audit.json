@@ -1,0 +1,300 @@
+{
+  "status": "planning_audit_only",
+  "reference_commit": "4d1c368ea3414534fb60cb280c67022147458e0f",
+  "manifest_sha256": "09dcb9c27a7986bd79e0000c05c933bb38dd73045d1b4e9ea43534059168eff7",
+  "allowed_pool": "original Train/Val only; original Test excluded",
+  "pool_samples": 48985,
+  "pool_events": 2131,
+  "time_batches": 52,
+  "new_manifests_written": false,
+  "neural_training_started": false,
+  "split_seed": 42,
+  "split_rule": "ceil(0.6*n) train; floor(0.2*n) selection_val; remainder evaluation, per contiguous fine-label run",
+  "global_coarse_fault_event_ranges": [
+    {
+      "coarse": 1,
+      "name": "交流短路",
+      "first_block": 1770,
+      "last_block": 2319,
+      "active_events": 462
+    },
+    {
+      "coarse": 2,
+      "name": "弱电网",
+      "first_block": 0,
+      "last_block": 2369,
+      "active_events": 59
+    },
+    {
+      "coarse": 3,
+      "name": "相断开",
+      "first_block": 21,
+      "last_block": 2531,
+      "active_events": 434
+    },
+    {
+      "coarse": 4,
+      "name": "电网电气异常",
+      "first_block": 370,
+      "last_block": 969,
+      "active_events": 504
+    },
+    {
+      "coarse": 5,
+      "name": "谐波",
+      "first_block": 970,
+      "last_block": 1319,
+      "active_events": 294
+    },
+    {
+      "coarse": 6,
+      "name": "直流侧故障",
+      "first_block": 1320,
+      "last_block": 1669,
+      "active_events": 294
+    },
+    {
+      "coarse": 7,
+      "name": "IGBT闭锁",
+      "first_block": 1670,
+      "last_block": 1768,
+      "active_events": 84
+    }
+  ],
+  "global_forward_8class_coverage_possible": false,
+  "proof": "latest IGBT event1768 precedes earliest AC short-circuit event1770",
+  "proposed_views": {
+    "random": [
+      {
+        "role": "train",
+        "records": 30292,
+        "blocks": 1317,
+        "coarse_sample_counts": [
+          21727,
+          1844,
+          231,
+          1770,
+          2122,
+          1069,
+          1162,
+          367
+        ],
+        "coarse_event_counts": [
+          1317,
+          286,
+          36,
+          267,
+          312,
+          182,
+          182,
+          52
+        ],
+        "fine_labels_present": 48
+      },
+      {
+        "role": "selection_val",
+        "records": 9319,
+        "blocks": 405,
+        "coarse_sample_counts": [
+          6706,
+          668,
+          51,
+          529,
+          538,
+          376,
+          357,
+          94
+        ],
+        "coarse_event_counts": [
+          405,
+          88,
+          11,
+          82,
+          96,
+          56,
+          56,
+          16
+        ],
+        "fine_labels_present": 48
+      },
+      {
+        "role": "evaluation",
+        "records": 9374,
+        "blocks": 409,
+        "coarse_sample_counts": [
+          6687,
+          613,
+          55,
+          546,
+          606,
+          373,
+          378,
+          116
+        ],
+        "coarse_event_counts": [
+          408,
+          88,
+          12,
+          85,
+          96,
+          56,
+          56,
+          16
+        ],
+        "fine_labels_present": 48
+      }
+    ],
+    "forward": [
+      {
+        "role": "train",
+        "records": 30345,
+        "blocks": 1317,
+        "coarse_sample_counts": [
+          21745,
+          1934,
+          213,
+          1738,
+          2029,
+          1172,
+          1156,
+          358
+        ],
+        "coarse_event_counts": [
+          1317,
+          286,
+          36,
+          267,
+          312,
+          182,
+          182,
+          52
+        ],
+        "fine_labels_present": 48
+      },
+      {
+        "role": "selection_val",
+        "records": 9113,
+        "blocks": 405,
+        "coarse_sample_counts": [
+          6608,
+          594,
+          69,
+          484,
+          561,
+          340,
+          337,
+          120
+        ],
+        "coarse_event_counts": [
+          405,
+          88,
+          11,
+          82,
+          96,
+          56,
+          56,
+          16
+        ],
+        "fine_labels_present": 48
+      },
+      {
+        "role": "evaluation",
+        "records": 9527,
+        "blocks": 409,
+        "coarse_sample_counts": [
+          6767,
+          597,
+          55,
+          623,
+          676,
+          306,
+          404,
+          99
+        ],
+        "coarse_event_counts": [
+          408,
+          88,
+          12,
+          85,
+          96,
+          56,
+          56,
+          16
+        ],
+        "fine_labels_present": 48
+      }
+    ]
+  },
+  "original_train_statistics": {
+    "class_counts": [
+      28472,
+      2540,
+      273,
+      2347,
+      2611,
+      1452,
+      1522,
+      470
+    ],
+    "class_weights": [
+      0.03355242311954498,
+      0.3761041760444641,
+      3.499284267425537,
+      0.40703219175338745,
+      0.3658768832683563,
+      0.6579232811927795,
+      0.6276639699935913,
+      2.0325629711151123
+    ]
+  },
+  "architecture_parameter_counts_by_formula": {
+    "baseline": 24936,
+    "multiscale_candidate": 27432,
+    "capacity_control_width38": 27366,
+    "candidate_vs_control_difference": 66
+  },
+  "partition_dry_checks": {
+    "random": {
+      "source_row_overlaps_train_val_train_eval_val_eval": {
+        "current": [
+          0,
+          0,
+          0
+        ],
+        "dc": [
+          0,
+          0,
+          0
+        ],
+        "rms": [
+          0,
+          0,
+          0
+        ]
+      },
+      "forward_time_boundary_issues": [],
+      "original_test_records_used": false
+    },
+    "forward": {
+      "source_row_overlaps_train_val_train_eval_val_eval": {
+        "current": [
+          0,
+          0,
+          0
+        ],
+        "dc": [
+          0,
+          0,
+          0
+        ],
+        "rms": [
+          0,
+          0,
+          0
+        ]
+      },
+      "forward_time_boundary_issues": [],
+      "original_test_records_used": false
+    }
+  }
+}
