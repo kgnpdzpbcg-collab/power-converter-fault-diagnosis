@@ -5,6 +5,7 @@ description = "电力变换器故障诊断：数据预处理与测量感知专�
 requires-python = ">=3.12,<3.13"
 dependencies = [
     "numpy>=1.26",
+    "scikit-learn>=1.9.1",
     "torch>=2.4",
 ]
 
