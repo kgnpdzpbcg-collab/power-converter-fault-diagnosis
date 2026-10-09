@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "dataset": "validation",
+  "verified_runs": [
+    "b0_concat_seed42",
+    "b0_concat_seed123",
+    "b0_concat_seed2026",
+    "b1_mlp_skip_seed42",
+    "b1_mlp_skip_seed123",
+    "b1_mlp_skip_seed2026",
+    "b2_attention_seed42",
+    "b2_attention_seed123",
+    "b2_attention_seed2026",
+    "b3_attention_skip_seed42",
+    "b3_attention_skip_seed123",
+    "b3_attention_skip_seed2026"
+  ],
+  "no_test_evaluation": true,
+  "fixed_manifest_normalization_and_source_hashes": true,
+  "frozen_code_snapshot_matches": true,
+  "prediction_metrics_recalculated": true,
+  "best_checkpoint_probabilities_exactly_reproduced": true,
+  "attention_exactly_reproduced": [
+    "b2_attention_seed42",
+    "b2_attention_seed123",
+    "b2_attention_seed2026",
+    "b3_attention_skip_seed42",
+    "b3_attention_skip_seed123",
+    "b3_attention_skip_seed2026"
+  ],
+  "b0_matches_v1_concat_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "summary_recalculated": true
+}

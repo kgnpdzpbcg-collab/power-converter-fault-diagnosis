@@ -1,0 +1,167 @@
+{
+  "stage": "validation_only",
+  "protocol": "raw",
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "training": {
+    "seed": 42,
+    "batch_size": 256,
+    "max_epochs": 100,
+    "patience": 15,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0001,
+    "threads": 2
+  },
+  "test_evaluation_requested": false,
+  "selection_metric": "validation_macro_f1",
+  "initialization": "paired_encoders; head_seed+1; interaction_seed+2; restored_global_rng",
+  "runs": [
+    {
+      "id": "b0_concat_seed42",
+      "variant": "b0_concat",
+      "description": "原始拼接",
+      "seed": 42,
+      "fusion": "b0_concat",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b0_concat_seed123",
+      "variant": "b0_concat",
+      "description": "原始拼接",
+      "seed": 123,
+      "fusion": "b0_concat",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b0_concat_seed2026",
+      "variant": "b0_concat",
+      "description": "原始拼接",
+      "seed": 2026,
+      "fusion": "b0_concat",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b1_mlp_skip_seed42",
+      "variant": "b1_mlp_skip",
+      "description": "普通MLP＋跳跃拼接",
+      "seed": 42,
+      "fusion": "b1_mlp_skip",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b1_mlp_skip_seed123",
+      "variant": "b1_mlp_skip",
+      "description": "普通MLP＋跳跃拼接",
+      "seed": 123,
+      "fusion": "b1_mlp_skip",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b1_mlp_skip_seed2026",
+      "variant": "b1_mlp_skip",
+      "description": "普通MLP＋跳跃拼接",
+      "seed": 2026,
+      "fusion": "b1_mlp_skip",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b2_attention_seed42",
+      "variant": "b2_attention",
+      "description": "仅注意力交互",
+      "seed": 42,
+      "fusion": "b2_attention",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b2_attention_seed123",
+      "variant": "b2_attention",
+      "description": "仅注意力交互",
+      "seed": 123,
+      "fusion": "b2_attention",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b2_attention_seed2026",
+      "variant": "b2_attention",
+      "description": "仅注意力交互",
+      "seed": 2026,
+      "fusion": "b2_attention",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b3_attention_skip_seed42",
+      "variant": "b3_attention_skip",
+      "description": "注意力＋跳跃拼接",
+      "seed": 42,
+      "fusion": "b3_attention_skip",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b3_attention_skip_seed123",
+      "variant": "b3_attention_skip",
+      "description": "注意力＋跳跃拼接",
+      "seed": 123,
+      "fusion": "b3_attention_skip",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    },
+    {
+      "id": "b3_attention_skip_seed2026",
+      "variant": "b3_attention_skip",
+      "description": "注意力＋跳跃拼接",
+      "seed": 2026,
+      "fusion": "b3_attention_skip",
+      "branches": [
+        "current",
+        "dc",
+        "rms"
+      ]
+    }
+  ]
+}

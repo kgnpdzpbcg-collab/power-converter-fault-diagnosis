@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "epochs_each": 2,
+  "repeats": 2,
+  "history_except_timing_equal": true,
+  "checkpoint_tensors_equal": true,
+  "validation_probabilities_equal": true,
+  "no_test_evaluation": true
+}

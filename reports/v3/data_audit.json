@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "samples": 58153,
+  "raw_file_sha256_unchanged": true,
+  "no_cross_split_events_or_source_rows": true,
+  "manifest_matches_samples": true,
+  "raw_train_only_statistics_recomputed_exactly": true,
+  "old_v2_code_modules_unchanged": 15,
+  "no_test_dataset_constructed": true
+}

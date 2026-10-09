@@ -1,0 +1,225 @@
+{
+  "dataset": "validation",
+  "completed_runs": 12,
+  "planned_runs": 12,
+  "rows": [
+    {
+      "variant": "b0_concat",
+      "description": "原始拼接",
+      "parameters": 41320,
+      "macro_f1_by_seed": {
+        "42": 0.8828741936187051,
+        "123": 0.8708550376399513,
+        "2026": 0.878303610571267
+      },
+      "best_epochs": [
+        9,
+        7,
+        12
+      ],
+      "per_class_f1_mean": [
+        0.8941480304694364,
+        1.0,
+        1.0,
+        0.9996656636576396,
+        0.7092447240337824,
+        0.987413653884567,
+        0.5052693108005037,
+        0.9230128620338669
+      ],
+      "macro_f1_mean": 0.8773442806099746,
+      "macro_f1_std": 0.006066734137192638,
+      "macro_precision_mean": 0.8535484390028357,
+      "macro_precision_std": 0.009069416675256547,
+      "macro_recall_mean": 0.9582334916799174,
+      "macro_recall_std": 0.001103995803827534,
+      "accuracy_mean": 0.8625152362515235,
+      "accuracy_std": 0.006635350479671324,
+      "normal_recall_mean": 0.8121239470517448,
+      "normal_recall_std": 0.009951699703383362,
+      "dc_f1_mean": 0.5052693108005037,
+      "dc_f1_std": 0.017817144893201357,
+      "dc_precision_mean": 0.3400789585475826,
+      "dc_precision_std": 0.01655563858695517,
+      "dc_recall_mean": 0.984,
+      "dc_recall_std": 0.011623730516108443,
+      "latency_median_ms_mean": 0.15845002296070257,
+      "latency_median_ms_std": 0.004325170291402519,
+      "checkpoint_bytes_mean": 177017.0,
+      "checkpoint_bytes_std": 0.0
+    },
+    {
+      "variant": "b1_mlp_skip",
+      "description": "普通MLP＋跳跃拼接",
+      "parameters": 78488,
+      "macro_f1_by_seed": {
+        "42": 0.846349227181177,
+        "123": 0.8860322014881038,
+        "2026": 0.8348329454177499
+      },
+      "best_epochs": [
+        1,
+        1,
+        25
+      ],
+      "per_class_f1_mean": [
+        0.8970196484257752,
+        1.0,
+        1.0,
+        1.0,
+        0.7501756962750937,
+        0.9838656409060885,
+        0.5022926260621237,
+        0.7125513858963336
+      ],
+      "macro_f1_mean": 0.8557381246956769,
+      "macro_f1_std": 0.02685990511790306,
+      "macro_precision_mean": 0.8178633864728483,
+      "macro_precision_std": 0.03839775824437294,
+      "macro_recall_mean": 0.9586653810300249,
+      "macro_recall_std": 0.007256128767138399,
+      "accuracy_mean": 0.8655624865562487,
+      "accuracy_std": 0.013386844496520441,
+      "normal_recall_mean": 0.8189430405134376,
+      "normal_recall_std": 0.019084134460134242,
+      "dc_f1_mean": 0.5022926260621237,
+      "dc_f1_std": 0.023031297981950978,
+      "dc_precision_mean": 0.3393097676460295,
+      "dc_precision_std": 0.022799947026068544,
+      "dc_recall_mean": 0.9697777777777778,
+      "dc_recall_std": 0.015396007178390056,
+      "latency_median_ms_mean": 0.18221663776785135,
+      "latency_median_ms_std": 0.0045334031272324885,
+      "checkpoint_bytes_mean": 327317.0,
+      "checkpoint_bytes_std": 0.0
+    },
+    {
+      "variant": "b2_attention",
+      "description": "仅注意力交互",
+      "parameters": 54056,
+      "macro_f1_by_seed": {
+        "42": 0.8334320847031684,
+        "123": 0.8695702885317114,
+        "2026": 0.8686522948401407
+      },
+      "best_epochs": [
+        51,
+        2,
+        1
+      ],
+      "per_class_f1_mean": [
+        0.8824821002952783,
+        0.9932322828173802,
+        1.0,
+        1.0,
+        0.7440432652059116,
+        0.9829964663289567,
+        0.45840980821099603,
+        0.7965818586748651
+      ],
+      "macro_f1_mean": 0.8572182226916736,
+      "macro_f1_std": 0.020604512816628163,
+      "macro_precision_mean": 0.8293118962006667,
+      "macro_precision_std": 0.03741296145885005,
+      "macro_recall_mean": 0.9579715136998707,
+      "macro_recall_std": 0.010066620435911475,
+      "accuracy_mean": 0.8481035348103535,
+      "accuracy_std": 0.009942609255300829,
+      "normal_recall_mean": 0.7927697553148817,
+      "normal_recall_std": 0.010806621563215506,
+      "dc_f1_mean": 0.45840980821099603,
+      "dc_f1_std": 0.047959568716580706,
+      "dc_precision_mean": 0.2995158565754603,
+      "dc_precision_std": 0.04138003437104563,
+      "dc_recall_mean": 0.9866666666666667,
+      "dc_recall_std": 0.005333333333333357,
+      "latency_median_ms_mean": 0.21084999510397515,
+      "latency_median_ms_std": 0.0013256889135993021,
+      "checkpoint_bytes_mean": 230025.0,
+      "checkpoint_bytes_std": 0.0
+    },
+    {
+      "variant": "b3_attention_skip",
+      "description": "注意力＋跳跃拼接",
+      "parameters": 78632,
+      "macro_f1_by_seed": {
+        "42": 0.8302511234019567,
+        "123": 0.8444089039964869,
+        "2026": 0.859486346396811
+      },
+      "best_epochs": [
+        1,
+        1,
+        1
+      ],
+      "per_class_f1_mean": [
+        0.8673045685292361,
+        0.9988642816581489,
+        1.0,
+        1.0,
+        0.6396012582618333,
+        0.9812332439678283,
+        0.4820697520017942,
+        0.7886505590351712
+      ],
+      "macro_f1_mean": 0.8447154579317516,
+      "macro_f1_std": 0.014620022140069881,
+      "macro_precision_mean": 0.808885658507199,
+      "macro_precision_std": 0.01269585142283109,
+      "macro_recall_mean": 0.9445549886511082,
+      "macro_recall_std": 0.017964064616993323,
+      "accuracy_mean": 0.8313615831361583,
+      "accuracy_std": 0.03566333058292668,
+      "normal_recall_mean": 0.7751203369434417,
+      "normal_recall_std": 0.05532780521787933,
+      "dc_f1_mean": 0.4820697520017942,
+      "dc_f1_std": 0.024721407631591637,
+      "dc_precision_mean": 0.3331787255989027,
+      "dc_precision_std": 0.04801344595710737,
+      "dc_recall_mean": 0.9137777777777778,
+      "dc_recall_std": 0.14703791398189836,
+      "latency_median_ms_mean": 0.2117666881531477,
+      "latency_median_ms_std": 0.00045365143480862114,
+      "checkpoint_bytes_mean": 328329.0,
+      "checkpoint_bytes_std": 0.0
+    }
+  ],
+  "paired_comparisons": [
+    {
+      "variant": "b3_attention_skip",
+      "reference": "b0_concat",
+      "differences_by_seed": {
+        "42": -0.05262307021674839,
+        "123": -0.026446133643464376,
+        "2026": -0.01881726417445606
+      },
+      "mean_difference": -0.032628822678222945,
+      "wins": 0
+    },
+    {
+      "variant": "b3_attention_skip",
+      "reference": "b1_mlp_skip",
+      "differences_by_seed": {
+        "42": -0.016098103779220274,
+        "123": -0.04162329749161686,
+        "2026": 0.024653400979061102
+      },
+      "mean_difference": -0.011022666763925345,
+      "wins": 1
+    },
+    {
+      "variant": "b3_attention_skip",
+      "reference": "b2_attention",
+      "differences_by_seed": {
+        "42": -0.0031809613012117044,
+        "123": -0.02516138453522443,
+        "2026": -0.009165948443329741
+      },
+      "mean_difference": -0.012502764759921958,
+      "wins": 0
+    }
+  ],
+  "total_epochs": 292,
+  "total_train_seconds": 563.6727244001813,
+  "interpretation": "开发验证；同一划分的三个训练种子，不作统计显著性或独立测试结论"
+}

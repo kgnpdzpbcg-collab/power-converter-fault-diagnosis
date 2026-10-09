@@ -85,6 +85,11 @@ PyTorch 使用官方 CPU 软件源，供本机训练、数据加载与验证使�
 V3 原始模型、逐样本预测和数据只在本地；GitHub 归档源代码、方案和汇总核验报告。
 远端保留早期 [V0 方案](docs/V0_EXPERIMENT_PLAN.md) 作为历史设计，不代表已运行的全部实验。
 
+V3 已完成全部 12 次训练和独立核验。B0/B1/B2/B3 验证 Macro-F1 分别为
+87.73% / 85.57% / 85.72% / 84.47%；主模型 B3 未优于对照。
+完整结果与边界见 [V3_FINDINGS.md](V3_FINDINGS.md)，汇总核验见 `reports/v3/`。
+版本对应关系见 [docs/VERSION_ARCHIVE.md](docs/VERSION_ARCHIVE.md)。
+
 - `converter/prepare.py`：流式读取、最近时间匹配、八类映射、事件分层与训练集归一化。
 - `converter/data.py`：共享固定样本池的 Dataset/DataLoader。
 - `converter/models.py`：V0、匹配维度的拼接、等权平均、全局固定权重、动态门控。
