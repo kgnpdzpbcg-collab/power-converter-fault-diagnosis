@@ -37,3 +37,24 @@ V3 不直接覆盖 `main`，不强制更新任何远端分支，也没有自动�
 
 结果阶段保存 `diagnostics-feasibility-results` 本地标签，再由同一GitHub接口归档报告、汇总及导出脚本。
 完整运行证据留在 `artifacts/diagnostics/feasibility_v1/`；其 `plan.json` 指向执行前冻结提交。
+
+## 当前划分审计与简化多尺度候选
+
+2026-10-09，独立分支 `codex/multiscale-candidate`。旧划分、数据及converter源码不变。
+依最新要求简化为原等权平均、普通宽卷积、多尺度残差各三个种子，共9次训练。
+此前 `NEXT_EXPERIMENT_PLAN.md` 的R/F及四损失矩阵仍未执行。
+
+| 阶段 | 原始本地提交 | GitHub归档提交 | 相同文件树 |
+|---|---|---|---|
+| 候选冻结方案与代码 | fb1e3cfd836e18142d3835b94affd264fc7bb24b | d9ffc754c99dc2957bee4949032e9e36fe33eced | 8cc6e1aef5448fd7c0f535c7bc6d9853bcbe62ea |
+
+训练 `version.json` 指向上述冻结提交；冻结标签 `candidate-multiscale-frozen`。
+结果阶段标签 `candidate-multiscale-results` 保存审计、报告及 `reports/candidate/`。
+本地回执保存在 `artifacts/checks/current_split_20261009/archive_receipt.json`，
+记录冻结阶段相同文件树SHA、结果本地提交及上传状态；回执不进入自身提交，避免循环引用。
+源码冻结已通过GitHub接口归档，未覆盖main、未自动合并。
+结果阶段前次两次创建远端Git文件树均遇到接口网络传输错误，未更新远端分支，
+结果和报告完整保留在本地Git。用户追加同步要求后，按同一分支恢复结果归档，
+包含 `CANDIDATE_FINDINGS.md`、`reports/candidate/`和状态文档。
+本次本地同步提交保留在标签 `candidate-multiscale-results-sync`；具体远端提交和相同文件树SHA见本地回执。
+本地完整checkpoint和逐样本预测位于 `artifacts/experiments/multiscale_candidate/`，不上传。

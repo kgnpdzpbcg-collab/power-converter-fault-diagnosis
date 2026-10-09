@@ -1,15 +1,37 @@
 # 项目当前状态与续接入口
 
-更新：2026-10-09；当前完成阶段：48细标签与短波形频域可行性检查，结果和核验已写入磁盘。
+更新：2026-10-09；当前完成阶段：现有划分泄露审计与9次多尺度候选训练，全部核验通过。
 
-## 当前最新诊断
+## 当前最新完成阶段
+
+用户最新要求：简化问题，先检查当前划分及标签泄露，无问题则实现候选并跑实验。
+实际执行 `CANDIDATE_RUN_PLAN.md`，结果先读 `CANDIDATE_FINDINGS.md`。
+原始JSON完整重建一致；事件、三源行号及完整联合输入跨集合精确重复为0；
+标签/编号等不进入forward，归一化与类别权重仅由Train计算，未发现直接泄露。
+随机事件划分仍共享注入批次，不能证明跨批次或跨工况泛化。
+
+沿用Raw原划分及加权CE，baseline/wide/multiscale各3种子，共9次，227轮。
+验证Macro-F1：88.47±0.87% / 88.40±0.89% / 87.09±0.48%。
+多尺度残差候选三个种子均落后基线，平均低1.38个百分点；保留原等权平均作为最好基线。
+候选DC召回100%伴随DC精确率29.23%、正常召回78.30%，整体未改善。
+29项测试、9份checkpoint重载/指标重算核验通过；baseline三种子概率精确复现历史V2。
+
+当前分支 `codex/multiscale-candidate`；冻结标签 `candidate-multiscale-frozen`，
+结果标签 `candidate-multiscale-results`。源码新增在 `candidate/`，历史 `converter/`、
+原始/预处理数据、划分、归一化和旧快照均未修改。
+完整产物 `artifacts/experiments/multiscale_candidate/`，可存档汇总 `reports/candidate/`。
+本轮未新增Test预测；Test只在重建和排重审计时被检查。
+本轮已结束，不自动追加损失、模块或新划分以寻找正结果。
+
+### 此前下一轮提案（未执行）
 
 用户最新要求为“据新讨论稿细化下一轮实验方案”。已完成 `NEXT_EXPERIMENT_PLAN.md`，未开始新训练。
 方案修改优先级：先协议/八类时间对照和四损失比较，再有条件研究多尺度残差编码。
 时间覆盖核查确认：IGBT最后block1768，交流短路最早block1770，不存在训练/未来评估均覆盖八类的全局切点。
 拟议R/F为批内随机/前向60/20/20，使用原Train/Val池，旧Test仍隔离；应新建manifest并重拟合训练归一化。
 R/F三角色覆盖八类，事件数匹配，原始三源行号无跨角色重复；见 `reports/planning/next_protocol_audit.json`。
-当前分支为 `codex/next-experiment-plan`；原诊断分支保留。
+该方案保留在 `codex/next-experiment-plan`；原诊断分支保留。
+最新用户要求简化后，本轮未执行上述R/F及四损失矩阵。
 
 ### 已完成的上一轮诊断
 
@@ -49,6 +71,9 @@ V2等权平均验证88.47±0.87%是历史参照，本轮未重跑，不属于参
 
 ## 继续工作时先读
 
+- `CANDIDATE_FINDINGS.md`：最新划分审计、9次训练结果及解释边界。
+- `CANDIDATE_RUN_PLAN.md`：本轮冻结架构、对照和执行范围。
+- `reports/candidate/validation_report.json`：本轮9份checkpoint核验状态。
 - `V3_PLAN.md`：架构、矩阵、冻结配置、执行次序与解释边界。
 - `V3_FINDINGS.md`：实际结果、逐种子差值、类别指标、注意力统计和建议。
 - `docs/VERSION_ARCHIVE.md`：本地提交与 GitHub API 归档提交的对应关系。
@@ -66,4 +91,8 @@ GitHub仅归档代码、方案和汇总，完整模型和逐样本预测在 `art
 修改 `converter/` 后，旧实验 runner 的源码一致性检查可能拒绝续跑；应使用其冻结快照审计，
 新方案用新的目录，不能为通过检查而改旧快照或指纹。
 
-用户已授权本轮实现、12次训练和 GitHub 存档；尚未要求开展下一轮实验或评估测试集。
+用户授权的最新9次候选训练已完成；冻结源码已归档GitHub，结果已提交本地Git。
+用户追加要求将Markdown结果报告同步至 `codex/multiscale-candidate`，同步内容包含
+`CANDIDATE_FINDINGS.md`、`reports/candidate/`及状态文档。
+前次接口网络错误作为历史记录保留；同步版本及完整文件树比对回执在本地审计目录。
+尚未要求继续新实验或评估测试集。

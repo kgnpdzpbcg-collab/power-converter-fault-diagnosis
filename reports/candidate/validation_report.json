@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "checkpoint_prediction_replays": 9,
+  "history_best_epoch_and_early_stop_checked": true,
+  "all_metrics_recomputed": true,
+  "historical_baseline_probabilities_exact_seeds": [
+    42,
+    123,
+    2026
+  ],
+  "parameters": {
+    "baseline": 24936,
+    "wide": 27366,
+    "multiscale": 27432
+  },
+  "source_and_data_hashes_unchanged": true,
+  "dataset_splits": [
+    "train",
+    "val"
+  ],
+  "test_evaluated": false
+}
