@@ -1,56 +1,92 @@
-# Power Converter Fault Diagnosis
+# 电力变换器故障诊断实验
 
-基于 **Power Converter Fault Diagnosis Dataset** 的轻量级多源电气信号融合故障诊断研究。
+本项目使用 uv 管理 Python 3.12 环境。原始数据位于上级目录的 `数据/`，不复制或修改原始文件。
 
-## 项目定位
+## 环境
 
-目标不是设计复杂网络，而是完成一篇结构完整、实验可信、可复现的电子设备/功率电子变换器故障诊断会议论文。
+在本项目目录打开 PowerShell。当前机器的 uv 路径为：
 
-V0 主线固定为：
+```powershell
+$uvPath = 'D:\APP\miniconda3\miniconda\Scripts\uv.exe'
+& $uvPath sync --locked
+& $uvPath run python -c "import sys, numpy, torch; print(sys.executable); print(numpy.__version__); print(torch.__version__)"
+```
 
-> **三种公开电气测量同步对齐 → 8 类粗粒度故障诊断 → episode-level 数据划分 → 轻量多分支神经网络融合 → 与单源/传统基线比较。**
+也可以激活环境后运行 Python：
 
-## 数据源
+```powershell
+.\.venv\Scripts\Activate.ps1
+python --version
+```
 
-- Dataset: *Power Converter Fault Diagnosis Dataset*
-- Source: Zenodo record `20484338`
-- DOI: `10.5281/zenodo.20484338`
-- Related paper: García-Campos et al., *Hybrid Fault-Space Restructuring for Machine Learning-Based Fault Diagnosis in Power Electronic Converters*, Electronics, 2026.
+`pyproject.toml` 定义依赖，`uv.lock` 固定已解析的版本，`.venv/` 保存本项目的独立环境。
+PyTorch 使用官方 CPU 软件源，供本机训练、数据加载与验证使用。后续若改为 GPU 训练，需要按机器的 CUDA 环境调整软件源并重新锁定依赖。
 
-公开压缩包中包含：
+## 执行顺序
 
-- `id_mea_10.json`: three-phase RMS voltages，3 维
-- `id_mea_3.json`: instantaneous DC voltage and current，40 维，可重构为 `2 × 20`
-- `id_mea_2.json`: instantaneous three-phase currents，60 维，可重构为 `3 × 20`
+以下命令都在本项目目录执行，原始数据路径为 `../数据`。输出目录已存在时，准备和训练命令会拒绝覆盖，防止悄悄改变清单或结果。
 
-本项目不提交原始数据文件。请从 Zenodo 官方数据页下载。
+```powershell
+# 1. 构造联合样本、重建事件并固定划分；不会修改原始文件。
+& $uvPath run python -m converter.prepare
 
-## V0 文档
+# 2. 检查清单、训练集统计量、DataLoader，并从原始文件完整重建复核。
+& $uvPath run python -m converter.verify --raw-dir '..\数据'
 
-详细实验规范见：
+# 3. 核验关键边界逻辑。
+& $uvPath run python -m unittest discover -s tests -v
 
-- [`docs/V0_EXPERIMENT_PLAN.md`](docs/V0_EXPERIMENT_PLAN.md)
+# 4. 单独运行正式 V0，或使用下一条命令运行固定完整实验矩阵。
+& $uvPath run python -m converter.train --fusion v0 --output-dir artifacts/experiments/v0_standalone
 
-## 当前状态
+# 完整矩阵内已包含 V0，无需为其重复训练单独的 V0。
+& $uvPath run python -m converter.experiments
 
-- [x] 数据集与配套论文核验
-- [x] 三种公开 measurement 结构核验
-- [x] V0 任务定义固定
-- [x] V0 标签映射固定
-- [x] V0 数据对齐规则固定
-- [x] V0 数据划分规则固定
-- [x] V0 网络结构固定
-- [ ] 数据预处理脚本
-- [ ] episode manifest
-- [ ] baseline
-- [ ] V0 训练
-- [ ] 消融实验
-- [ ] 论文撰写
+# 5. 正式实验结束后，独立核验指标、最优轮次、checkpoint 和指纹。
+& $uvPath run python -m converter.validate_results
+```
 
-## 原则
+短流程验证可指定 `--max-epochs 2 --validation-only`，结果不会混入正式实验汇总；该模式不评估测试指标。
+详细协议、实验矩阵和解释边界见 [EXPERIMENT_PLAN.md](EXPERIMENT_PLAN.md)。
 
-1. 主指标使用 **Macro-F1**，不以 Accuracy 作为主要结论。
-2. 主实验禁止 sample-level 随机拆分造成同一故障事件泄漏。
-3. 所有归一化参数只允许由训练集估计。
-4. 不为了“创新”堆叠 Transformer / Attention / BiLSTM 等复杂模块。
-5. V0 先验证“多源信息是否真的有增益”，再决定是否进入 V1。
+## 首轮执行结果
+
+已生成 58,153 组联合样本，完成 48 次正式训练和全部结果核验。详见 [FINDINGS.md](FINDINGS.md)。
+多测量融合有收益，初版 MA-MoE 尚未证明优于简单融合；原始极大值原因、门控分支抑制和正常/直流混淆仍待排查。
+
+## 第二轮诊断与受控改进
+
+已完成分支归一化、等权门控初始化的 6 个变体 × 3 种子比较，共 18 次训练，全部核验通过。
+本轮只使用训练、验证集；等权平均的验证 Macro-F1 为 88.47%，动态对照为 86.12%，改动未带来平均收益。
+正常/直流区分仍存在明显种子差异，下一步优先核对恢复段标签及分类损失。详见 [V2_FINDINGS.md](V2_FINDINGS.md) 和 [V2_PLAN.md](V2_PLAN.md)。
+
+```powershell
+# 按预先固定的计划运行第二轮；已完成的实验不会重复训练。
+& $uvPath run python -m converter.experiments_v2
+
+# 只重算验证指标、恢复验证预测，并对照首轮等权基线。
+& $uvPath run python -m converter.validate_v2
+```
+
+## 文件与产物
+
+- `converter/prepare.py`：流式读取、最近时间匹配、八类映射、事件分层与训练集归一化。
+- `converter/data.py`：共享固定样本池的 Dataset/DataLoader。
+- `converter/models.py`：V0、匹配维度的拼接、等权平均、全局固定权重、动态门控。
+- `converter/train.py`：加权交叉熵、验证集选择、早停、checkpoint 和一次最终测试。
+- `converter/experiments.py`：按固定顺序训练并生成汇总。
+- `converter/verify.py` 与 `tests/`：真实数据复核及关键逻辑测试。
+- `converter/validate_results.py`：正式实验的清单、指纹、选模和预测指标核验。
+- `converter/diagnose_gate.py`：验证集的分支表示幅值及权重诊断。
+- `converter/diagnose_errors.py`：恢复段、直流细类、裁剪及类别权重的训练/验证诊断。
+- `converter/models_v2.py` 与 `converter/experiments_v2.py`：第二轮配对初值的受控模型与固定矩阵。
+- `converter/training_trace.py` 与 `converter/validate_v2.py`：训练权重/梯度观测及验证集独立核验。
+- `artifacts/prepared/v0/`：样本 NPZ、固定 manifest、事件清单、两套归一化、数据审计和验证报告。
+- `artifacts/checks/`：不评估测试集的流程及确定性验证。
+- `artifacts/experiments/v1/`：正式实验，每次独立保存配置、日志、最优权重、验证/测试预测和结果。
+- `artifacts/experiments/v2_validation/`：第二轮验证实验、源码快照、训练观测和核验报告。
+- `artifacts/diagnostics/v2/`：恢复段和类别权重诊断，不包含测试预测或测试指标。
+
+汇总文件为 `REPORT.md`、`summary.csv`、`per_class.csv` 和 `summary.json`。
+读取 `progress.json` 可查看已完成实验数；只有 `result.json` 存在且 status=complete 的实验才计入汇总。
+运行状态及最终指标以产物为准，不能用短流程验证分数代替正式测试结论。
