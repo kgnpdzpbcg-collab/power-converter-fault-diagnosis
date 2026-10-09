@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "rf_model_replays": 6,
+  "cnn_checkpoint_replays": 3,
+  "all_predictions_exact": true,
+  "sklearn_metrics_independently_checked": true,
+  "same_validation_sample_indices_and_labels": true,
+  "source_and_data_unchanged": true,
+  "dataset_splits": [
+    "train",
+    "val"
+  ],
+  "test_evaluated": false
+}

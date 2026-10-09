@@ -46,7 +46,7 @@ RF-All与CNN-Mean比较的是整个分类方案，不能只把差值归因于CNN
 ## 执行与验证
 
 执行前冻结代码、参数、数据指纹和CNN参照预测/checkpoint指纹，并保存源码快照。
-数据审计必须保持passed、事件/来源行号跨集合重复为0；输入列只从共享Dataset.features构造。
+数据审计必须保持passed、事件/来源行号跨集合重复为0；输入列只从共享Dataset的测量输入字典构造。
 新增依赖仅scikit-learn及其必要依赖，uv锁定版本；旧converter/candidate源码不修改。
 
 正式入口：`.venv\Scripts\python.exe -m baselines.rf run`。

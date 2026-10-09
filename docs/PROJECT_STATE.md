@@ -1,8 +1,23 @@
 # 项目当前状态与续接入口
 
-更新：2026-10-09；当前完成阶段：现有划分泄露审计与9次多尺度候选训练，全部核验通过。
+更新：2026-10-09；当前完成阶段：RF-Current/RF-All/CNN-Mean的固定八类对照，全部核验通过。
 
-## 当前最新完成阶段
+## 最新完成：传统RF与CNN比较
+
+用户指定三个模型和相同八类标签、事件划分、Macro-F1。执行 `RF_BASELINE_PLAN.md`，
+结果先读 `RF_BASELINE_FINDINGS.md`。沿用Raw原Train/Val、归一化和clip10，RF逐项复用CNN训练类别权重。
+RF-Current60维、RF-All103维，各100树×3种子，共6次新拟合；CNN-Mean不重训，只重载旧三份checkpoint。
+原论文身份已核实，RF具体超参数尚未核实，本轮参数预先固定，不宣称原文超参数精确复现。
+验证Macro-F1：85.57±0.17% / 89.02±0.18% / 88.47±0.87%。
+RF-All比CNN高0.55个百分点，比RF-Current高3.45个百分点；Normal/DC依然明显混淆。
+RF-All提高DC和电网异常F1，但IGBT F1下降，不能认为逐类全面优于CNN。
+31项测试、6个RF保存重载及3份CNN预测重放通过，sklearn独立重算指标一致。
+样本编号/标签/指纹一致，旧converter/candidate源码不变；未新增Test评估。
+当前分支 `codex/rf-baselines`，冻结标签 `rf-baselines-frozen`，结果标签 `rf-baselines-results`。
+汇总 `reports/rf_baselines/`，完整模型/预测 `artifacts/experiments/rf_baselines/`。
+本轮已结束，不自动追加参数搜索、其他模型或Test评估。
+
+## 上一完成阶段：多尺度候选
 
 用户最新要求：简化问题，先检查当前划分及标签泄露，无问题则实现候选并跑实验。
 实际执行 `CANDIDATE_RUN_PLAN.md`，结果先读 `CANDIDATE_FINDINGS.md`。
@@ -71,6 +86,9 @@ V2等权平均验证88.47±0.87%是历史参照，本轮未重跑，不属于参
 
 ## 继续工作时先读
 
+- `RF_BASELINE_FINDINGS.md`：最新RF/CNN对照、Normal/DC错误和方法定位边界。
+- `RF_BASELINE_PLAN.md`：固定输入、参数、共同协议及原文超参数限制。
+- `reports/rf_baselines/validation_report.json`：6个RF与3份CNN的重载核验。
 - `CANDIDATE_FINDINGS.md`：最新划分审计、9次训练结果及解释边界。
 - `CANDIDATE_RUN_PLAN.md`：本轮冻结架构、对照和执行范围。
 - `reports/candidate/validation_report.json`：本轮9份checkpoint核验状态。
@@ -91,8 +109,7 @@ GitHub仅归档代码、方案和汇总，完整模型和逐样本预测在 `art
 修改 `converter/` 后，旧实验 runner 的源码一致性检查可能拒绝续跑；应使用其冻结快照审计，
 新方案用新的目录，不能为通过检查而改旧快照或指纹。
 
-用户授权的最新9次候选训练已完成；冻结源码已归档GitHub，结果已提交本地Git。
-用户追加要求将Markdown结果报告同步至 `codex/multiscale-candidate`，同步内容包含
-`CANDIDATE_FINDINGS.md`、`reports/candidate/`及状态文档。
-前次接口网络错误作为历史记录保留；同步版本及完整文件树比对回执在本地审计目录。
+多尺度9次训练和其结果归档均已完成，分支 `codex/multiscale-candidate` 保留。
+最新RF/CNN对照已完成6次RF拟合和3份CNN参照核验，单独归档至 `codex/rf-baselines`。
+当前方法主张必须考虑RF-All略高于CNN-Mean且Normal/DC尚未解决的结果。
 尚未要求继续新实验或评估测试集。

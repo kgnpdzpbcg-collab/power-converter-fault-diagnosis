@@ -1,0 +1,76 @@
+{
+  "seeds": [
+    42,
+    123,
+    2026
+  ],
+  "models": [
+    "RF-Current",
+    "RF-All",
+    "CNN-Mean"
+  ],
+  "sklearn": "1.9.1",
+  "runtime": {
+    "numpy": "2.5.3",
+    "torch": "2.14.1+cpu",
+    "joblib": "1.6.0"
+  },
+  "source_sha256": {
+    "baselines/__init__.py": "47ab2e336781277b4ac217e0f623959be12073d2ffd2fd57ee875413f12a826b",
+    "baselines/rf.py": "41f1c3d88be3e20bbb04522378e82252b6c3dff432c1c970668d51354e68097a",
+    "converter/data.py": "7bb34422f8c48f7ef7bcca6fb1c3d4548f9baffd48f0c196b7abb9f0af74aee8",
+    "converter/models.py": "feb7e4eabab0000fc763521cb1bf60f94988526b0c70d8bacc2955f6d953c021",
+    "converter/metrics.py": "88cb77c82088fee61583bc19b5c2212d027dca50211f4854b2990347754f8797",
+    "converter/prepare.py": "cb4b59a7e619f9432b4e60a7789e246deff18f19964603f6121af23946193144",
+    "converter/train.py": "1af43f99cf56af76f4f25970b60d3007af8b0a6000d84fff917a9e578ea85471"
+  },
+  "reference_sha256": {
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed42\\best.pt": "18f9d133e1f64bf27bf7fce47125b0c03219c72b62a3d5fa04eaec0e02a3b875",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed42\\validation_predictions.npz": "63862cab1875a5b3eaffce7930feab6c608e8feec20bb33ea6212a98b91a1862",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed42\\result.json": "33c1c142474e6150168f8d7a984d42583eabe5167639eea7779fde91062e44bd",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed123\\best.pt": "383f8e7cb510cc82847d813dd2a010cdeb3b655c8d8352ffd03e33b698ec9a86",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed123\\validation_predictions.npz": "17ea117ce4c9927161c1969ca206d70bed0bee46ee81d5e8dfce8d23222fc3d1",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed123\\result.json": "1a4d36b22535fa452311ae155fffa7a94a0df61934a02fe89c61a9b099a6cb90",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed2026\\best.pt": "4300fc5970a032f1cf73f0ebff4f1b6431baf901807fac673bd5f9bd5568868d",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed2026\\validation_predictions.npz": "dd25fa096326bca6affe1cb4368de7da58bb6b328a10d70c42e2918b5912a5ea",
+    "artifacts\\experiments\\multiscale_candidate\\baseline_seed2026\\result.json": "971718692d76155bf217e2b14e5a236cb4196a2629afb0ff66f70eabe8f4acc7"
+  },
+  "prepared_sha256": {
+    "samples.npz": "f75a05e36fd216f18da37f361a175bb31fd37471bd351c6acfebb1b744113456",
+    "manifest.csv": "09dcb9c27a7986bd79e0000c05c933bb38dd73045d1b4e9ea43534059168eff7",
+    "blocks.csv": "702eb45d41263cade9b6f930261b6cfcffb1791d8b42deea647d9e74592a91ab",
+    "normalization_raw.npz": "dec1fc369a2b2b40fb89040c235074417411a9fbd70d50b7baa794abc1652768",
+    "normalization_exclude_saturation.npz": "ea81f78a36dee544d13ddfba4d6195df2fe9134e1a846cccdc83d96f2929af95"
+  },
+  "rf_parameters": {
+    "n_estimators": 100,
+    "criterion": "gini",
+    "max_features": "sqrt",
+    "max_depth": null,
+    "min_samples_split": 2,
+    "min_samples_leaf": 1,
+    "bootstrap": true,
+    "n_jobs": 1,
+    "random_state": 42,
+    "class_weight": {
+      "0": 0.03355242311954498,
+      "1": 0.3761041760444641,
+      "2": 3.499284267425537,
+      "3": 0.40703219175338745,
+      "4": 0.3658768832683563,
+      "5": 0.6579232811927795,
+      "6": 0.6276639699935913,
+      "7": 2.0325629711151123
+    }
+  },
+  "protocol": "raw",
+  "dataset_splits": [
+    "train",
+    "val"
+  ],
+  "test_evaluated": false,
+  "paper_url": "https://doi.org/10.3390/electronics15143029",
+  "paper_exact_rf_parameters_verified": false,
+  "uv_lock_sha256": "9c21c138278f6afc83a4b2dfda96de88ee55c63ee9863fe2757dd9c01bf1330d",
+  "local_commit": "4c180b300c42e1b648ea5d990d6cf41272f32cc5"
+}

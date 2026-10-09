@@ -2,7 +2,18 @@
 
 本项目使用 uv 管理 Python 3.12 环境。原始数据位于上级目录的 `数据/`，不复制或修改原始文件。
 
-## 最新完成：划分审计与简化候选实验
+## 最新完成：RF与CNN的相同协议对照
+
+2026-10-09：RF-Current/RF-All各三个种子共6次新拟合，CNN-Mean复用三份checkpoint并重载核验。
+所有模型使用原八类标签、同一事件划分、原Train统计及clip10，RF使用同一训练类别权重。
+平均验证Macro-F1：RF-Current85.57±0.17%、RF-All89.02±0.18%、CNN-Mean88.47±0.87%。
+RF-All略高，但Normal/DC混淆仍明显；不能宣称CNN是达到约88%性能的必要条件。
+31项测试和全部9份模型重载核验通过，未新增Test评估。
+原论文具体RF超参数尚未核实，本轮固定100树等参数，不宣称原文超参数精确复现。
+详见 [RF_BASELINE_FINDINGS.md](RF_BASELINE_FINDINGS.md)，冻结协议见 [RF_BASELINE_PLAN.md](RF_BASELINE_PLAN.md)。
+归档分支 `codex/rf-baselines`，汇总 `reports/rf_baselines/`，完整模型/预测仅保存在本地 `artifacts/`。
+
+## 上一完成阶段：划分审计与简化候选实验
 
 2026-10-09：从原始JSON完整重建并检查现有划分，未发现直接标签或原始记录泄露。
 沿用原划分完成等权平均、普通宽卷积、多尺度残差各三个种子，共9次正式训练；

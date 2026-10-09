@@ -1,0 +1,49 @@
+{
+  "status": "passed",
+  "direct_label_or_record_leakage_found": false,
+  "full_raw_rebuild_exact_match": true,
+  "normalization_and_class_weights_train_only_exact": true,
+  "manifest_and_blocks_match_arrays": true,
+  "cross_split_blocks_and_source_rows": 0,
+  "raw_joint_vectors": {
+    "cross_split_identical_vector_groups": 0,
+    "records_in_cross_split_identical_groups": 0
+  },
+  "normalized_joint_vectors": {
+    "cross_split_identical_vector_groups": 0,
+    "records_in_cross_split_identical_groups": 0
+  },
+  "feature_inputs": [
+    "current",
+    "dc",
+    "rms"
+  ],
+  "metadata_perturbation_changes_model_output": false,
+  "prepared_files_unchanged_sha256": {
+    "samples.npz": "f75a05e36fd216f18da37f361a175bb31fd37471bd351c6acfebb1b744113456",
+    "manifest.csv": "09dcb9c27a7986bd79e0000c05c933bb38dd73045d1b4e9ea43534059168eff7",
+    "blocks.csv": "702eb45d41263cade9b6f930261b6cfcffb1791d8b42deea647d9e74592a91ab",
+    "normalization_raw.npz": "dec1fc369a2b2b40fb89040c235074417411a9fbd70d50b7baa794abc1652768",
+    "normalization_exclude_saturation.npz": "ea81f78a36dee544d13ddfba4d6195df2fe9134e1a846cccdc83d96f2929af95"
+  },
+  "source_sha256": {
+    "current": "9e90f30e9428605db994a2395fe1c64439fb5fd434c5b5b60fcb87a6b458ebbd",
+    "dc": "e66feb54cf157499e5a9721a427aaece6021e30fb37bc7d35249b038170f0a24",
+    "rms": "e7ab2564d1d3227a8f76755fe723b61a648111cd1b463df9d1973e9b5ddaabdd"
+  },
+  "split_counts": {
+    "train": 39687,
+    "val": 9298,
+    "test": 9168
+  },
+  "label_consistency_filter_after_time_matching": {
+    "time_matched": 58155,
+    "label_mismatch_excluded": 2,
+    "description": "最近邻仅按时间匹配，随后剔除2组标签不一致的三源记录；标签不进入特征"
+  },
+  "limitations": [
+    "随机事件划分共享注入批次；只能支持当前数据内评估，不能证明跨批次泛化",
+    "历史V1已观察Test；本轮训练只用Train/Val，不将Test称为完全未观察的终评集"
+  ],
+  "test_model_prediction_computed": false
+}

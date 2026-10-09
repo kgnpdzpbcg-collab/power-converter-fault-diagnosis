@@ -58,3 +58,18 @@ V3 不直接覆盖 `main`，不强制更新任何远端分支，也没有自动�
 包含 `CANDIDATE_FINDINGS.md`、`reports/candidate/`和状态文档。
 本次本地同步提交保留在标签 `candidate-multiscale-results-sync`；具体远端提交和相同文件树SHA见本地回执。
 本地完整checkpoint和逐样本预测位于 `artifacts/experiments/multiscale_candidate/`，不上传。
+
+## 固定八类RF/CNN对照阶段
+
+独立分支 `codex/rf-baselines`，以多尺度结果分支归档提交cbecb55为起点。
+旧converter/candidate源码、数据、事件划分和训练统计不变；新增scikit-learn1.9.1与必要依赖并锁定版本。
+原论文具体RF超参数尚未核实，本轮为预先固定100树设置的协议内RF对照。
+
+| 阶段 | 原始本地提交 | GitHub归档提交 | 相同文件树 |
+|---|---|---|---|
+| RF冻结方案与代码 | 4c180b300c42e1b648ea5d990d6cf41272f32cc5 | cc4b7bda7bcb13584ff58db912e5cb4e8bb8d6b3 | fad7519231582820d901a2be41203915f3fb20dc |
+
+冻结标签 `rf-baselines-frozen`；结果标签 `rf-baselines-results`。
+结果报告为 `RF_BASELINE_FINDINGS.md`，汇总和核验在 `reports/rf_baselines/`。
+结果归档使用同一分支，完整文件树核验回执保存到 `artifacts/checks/rf_baselines_archive_receipt.json`。
+本轮6次RF新拟合、3份CNN参照重载，完整模型和逐样本预测只保存在本地，不上传数据。
