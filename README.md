@@ -70,6 +70,21 @@ PyTorch 使用官方 CPU 软件源，供本机训练、数据加载与验证使�
 
 ## 文件与产物
 
+第三轮方案见 [V3_PLAN.md](V3_PLAN.md)：三个全局特征 token 的单层四头自注意力，
+再与原始三源特征跳跃拼接。B0–B3 各三个种子，共 12 次训练，只使用 Train/Val。
+普通 MLP 对照与注意力主模型参数量相差 0.183%。
+
+```powershell
+& $uvPath run python -m unittest discover -s tests -v
+& $uvPath run python scripts/check_v3.py
+& $uvPath run python -m converter.experiments_v3
+& $uvPath run python -m converter.validate_v3
+```
+
+短训练脚本拒绝覆盖已有目录。正式实验源码冻结后，不在同一轮中混入不同代码。
+V3 原始模型、逐样本预测和数据只在本地；GitHub 归档源代码、方案和汇总核验报告。
+远端保留早期 [V0 方案](docs/V0_EXPERIMENT_PLAN.md) 作为历史设计，不代表已运行的全部实验。
+
 - `converter/prepare.py`：流式读取、最近时间匹配、八类映射、事件分层与训练集归一化。
 - `converter/data.py`：共享固定样本池的 Dataset/DataLoader。
 - `converter/models.py`：V0、匹配维度的拼接、等权平均、全局固定权重、动态门控。
